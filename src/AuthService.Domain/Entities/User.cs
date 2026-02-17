@@ -21,7 +21,7 @@ public class User
     public string Username { get; set; } = string.Empty;
 
     [Required]
-    [EmailAdress] //El valor de esta propiedad debe tener un formato de correo electronico
+    [EmailAddress] //El valor de esta propiedad debe tener un formato de correo electronico
     public string Email { get; set; } = string.Empty;
 
     [Required]

@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AuthService.Domain.Entities;
 
-public class=UserProfile
+// Corrección: Se cambió "public class=UserProfile" por "public class UserProfile"
+public class UserProfile
 {
     [Key]
     [MaxLength(16)]
@@ -12,11 +13,11 @@ public class=UserProfile
     [Required]
     [MaxLength(16)]
     [ForeignKey(nameof(User))]
-    public String UserId { get; set; } = string.Empty;
+    public string UserId { get; set; } = string.Empty;
 
-    public string ProfilePictureUrl { get; set; }
-    public string Bio { get; set; }
+    public string? ProfilePictureUrl { get; set; } // Se agregó '?' si puede ser nulo
+    public string? Bio { get; set; }              // Se agregó '?' si puede ser nulo
     public DateTime DateOfBirth { get; set; }
 
-    public User user { get; set; } = null!;
+    public User User { get; set; } = null!; // Se corrigió mayúscula en 'User' para convención C#
 }

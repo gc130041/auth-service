@@ -4,7 +4,7 @@ namespace AuthService.Domain.Entities;
 
 public class Role
 {
-    [key]
+    [Key]
     [MaxLength(16)]
     public string Id { get; set; }
 

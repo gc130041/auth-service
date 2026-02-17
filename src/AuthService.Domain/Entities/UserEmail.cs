@@ -1,3 +1,8 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace AuthService.Domain.Entities;
+
 public class UserEmail
 {
     [Key]
@@ -6,6 +11,7 @@ public class UserEmail
 
     [Required]
     [MaxLength(16)]
+    [ForeignKey(nameof(User))] // Es probable que necesites esto si UserId es FK
     public string UserId { get; set; } = string.Empty;
 
     [Required]
@@ -18,8 +24,4 @@ public class UserEmail
 
     [Required]
     public User User { get; set; } = null!;
-}g Postman
-ocontreras-2024150@kinal.edu.gt
-
-Ocontreras-2024150
-Session expired
+}
