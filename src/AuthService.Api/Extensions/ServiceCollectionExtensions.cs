@@ -1,0 +1,23 @@
+// Archivo: src/AuthService.Api/Extensions/ServiceCollectionExtensions.cs
+
+using AuthService.Domain.Entities;
+using AuthService.Domain.Constants;
+using AuthService.Persistence.Data;
+using Microsoft.EntityFrameworkCore; // <-- CORRECCIÓN: Este namespace contiene UseNpgsql() y UseSnakeCaseNamingConvention()
+
+namespace AuthService.Api.Extensions;
+
+public static class ServiceCollectionExtensions
+{
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services, 
+        IConfiguration configuration)
+    {
+        services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
+                .UseSnakeCaseNamingConvention());
+
+        services.AddHealthChecks();
+
+        return services;
+    }
+}
