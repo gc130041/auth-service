@@ -1,10 +1,11 @@
 using System.Security.Cryptography;
 using System.Text;
+using System.Linq;
 
 namespace AuthService.Application.Services;
 
-public static class UuidGenerator{
-
+public static class UuidGenerator
+{
     private const string Alphabet = "123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvxyz";
 
     public static string GenerateShortUUID()
@@ -13,38 +14,40 @@ public static class UuidGenerator{
         var bytes = new byte[12];
         rng.GetBytes(bytes);
 
-        var result = new StackBuilder(12);
+        var result = new StringBuilder(12);
 
         for (int i = 0; i < 12; i++)
         {
             result.Append(Alphabet[bytes[i] % Alphabet.Length]);
-
-            result.ToString();
         }
 
-        public static string GenerateUserId()
+        return result.ToString();
+    }
+
+    public static string GenerateUserId()
+    {
+        return $"usr_{GenerateShortUUID()}";
+    }
+
+    public static string GenerateRoleId()
+    {
+        return $"rol_{GenerateShortUUID()}";
+    }
+
+    public static bool IsValidUserId(string userId)
+    {
+        if(string.IsNullOrEmpty(userId))
         {
-            return $"usr_{GenerateShortUUID()}";
+            return false;
         }
 
-        public static string GenerateRoleId()
+        if(userId.Length != 16 || !userId.StartsWith("usr_"))
         {
-            return $"rol_{GenerateShortUUID()}";
+            return false;
         }
 
-        public static bool IsValidUserId(string userId)
-        {
-            if(string.IsNullOrEmpty(id)){
-                return false;
-            }
-
-            if(id.Length != 12 || !id.StartsWith("usr_"))
-            {
-                return false;
-            }
-
-            var idPart = (4..);
-            return idPart.All(c => Alphabet.Contains(c))
-        }
+        var idPart = userId[4..]; 
+        
+        return idPart.All(c => Alphabet.Contains(c)); 
     }
 }
