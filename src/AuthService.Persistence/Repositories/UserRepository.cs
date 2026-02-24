@@ -81,11 +81,12 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
  
     // 7. Actualiza la información de un usuario existente
     public async Task<User> UpdateAsync(User user)
-    {
-        await context.SaveChangesAsync();
-        var updatedUser = await GetByIdAsync(user.Id);
-        return updatedUser ?? user;
-    }
+{
+    context.Users.Update(user);
+    await context.SaveChangesAsync();
+    var updatedUser = await GetByIdAsync(user.Id);
+    return updatedUser ?? user;
+}
  
     // 8. Elimina un usuario de la base de datos por su ID
     public async Task<bool> DeleteAsync(string id)

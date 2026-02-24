@@ -49,10 +49,11 @@ public static class DataSeeder
                     Surname = "User",
                     Username = "admin",
                     Email = "admin@ksports.local",
-                    //Password = passwordHasher.HashPassword("Admin1234!"),
                     Password = "12345678",
                     Status = true,
-                    Profile = new UserProfile // CORREGIDO AQUÍ: Era UserProfile y pasó a Profile
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
+                    Profile = new UserProfile
                     {
                         Id = profileId,
                         UserId = userId,
