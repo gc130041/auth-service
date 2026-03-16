@@ -3,21 +3,23 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AuthService.Domain.Entities;
 
-// Corrección: Se cambió "public class=UserProfile" por "public class UserProfile"
 public class UserProfile
 {
     [Key]
     [MaxLength(16)]
     public string Id { get; set; } = string.Empty;
 
-    [Required]
-    [MaxLength(16)]
+    [Required][MaxLength(16)]
     [ForeignKey(nameof(User))]
     public string UserId { get; set; } = string.Empty;
 
-    public string? ProfilePictureUrl { get; set; } // Se agregó '?' si puede ser nulo
-    public string? Bio { get; set; }              // Se agregó '?' si puede ser nulo
+    public string? ProfilePicture { get; set; } // Cambiado de ProfilePictureUrl a ProfilePicture
+    
+    [MaxLength(20)]
+    public string? Phone { get; set; } // Propiedad agregada para coincidir con el DTO
+
+    public string? Bio { get; set; }              
     public DateTime DateOfBirth { get; set; }
 
-    public User User { get; set; } = null!; // Se corrigió mayúscula en 'User' para convención C#
+    public User User { get; set; } = null!; 
 }
