@@ -17,7 +17,7 @@ services:
   auth-api:
     image: auth-service-api
     build:
-      context: .
+      context: ./src
       dockerfile: Dockerfile
     container_name: auth-service-container
     depends_on:

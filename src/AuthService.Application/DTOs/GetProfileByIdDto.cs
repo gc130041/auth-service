@@ -2,11 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AuthService.Application.DTOs;
 
-public class LoginDto
+public class GetProfileByIdDto
 {
-    [Required]
-    public string EmailOrUsername { get; set; } = string.Empty;
-
-    [Required]
-    public string Password { get; set; } = string.Empty;
+    [Required(ErrorMessage = "El userId es requerido")]
+    public string UserId { get; set; } = string.Empty;
 }
